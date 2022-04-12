@@ -6,7 +6,7 @@ import { Product } from '@http/graphql/models/product';
 import { ProductsService } from '@services/products.service';
 import { CreateProductInput } from '@http/graphql/inputs/create-product-input';
 
-@Resolver()
+@Resolver(() => Product)
 export class ProductsResolver {
   constructor(private productsService: ProductsService) {}
 
