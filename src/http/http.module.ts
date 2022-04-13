@@ -6,6 +6,7 @@ import path from 'node:path';
 
 import { DatabaseModule } from '@database/database.module';
 
+import { CustomersResolver } from '@http/graphql/resolvers/customers.resolver';
 import { ProductsResolver } from '@http/graphql/resolvers/products.resolver';
 import { PurchasesResolver } from '@http/graphql/resolvers/purchases.resolver';
 
@@ -26,6 +27,7 @@ import { PurchasesService } from '@services/purchases.service';
     //Resolvers
     ProductsResolver,
     PurchasesResolver,
+    CustomersResolver,
 
     //Services
     CustomersService,
