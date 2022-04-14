@@ -10,6 +10,8 @@ import { CustomersResolver } from '@http/graphql/resolvers/customers.resolver';
 import { ProductsResolver } from '@http/graphql/resolvers/products.resolver';
 import { PurchasesResolver } from '@http/graphql/resolvers/purchases.resolver';
 
+import { MessagingModule } from '@messaging/messaging.module';
+
 import { CustomersService } from '@services/customers.service';
 import { ProductsService } from '@services/products.service';
 import { PurchasesService } from '@services/purchases.service';
@@ -18,6 +20,7 @@ import { PurchasesService } from '@services/purchases.service';
   imports: [
     ConfigModule.forRoot(),
     DatabaseModule,
+    MessagingModule,
     GraphQLModule.forRoot({
       driver: ApolloDriver,
       autoSchemaFile: path.resolve(process.cwd(), 'src/schema.gql'),
