@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-
-import { KafkaService } from '@messaging/kafka.service';
+import { KafkaService } from './kafka.service';
 
 @Module({
   imports: [ConfigModule.forRoot()],

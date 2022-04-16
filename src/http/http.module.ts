@@ -7,17 +7,14 @@ import { ConfigModule } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';
 import path from 'node:path';
 
-import { DatabaseModule } from '@database/database.module';
-
-import { CustomersResolver } from '@http/graphql/resolvers/customers.resolver';
-import { ProductsResolver } from '@http/graphql/resolvers/products.resolver';
-import { PurchasesResolver } from '@http/graphql/resolvers/purchases.resolver';
-
-import { MessagingModule } from '@messaging/messaging.module';
-
-import { CustomersService } from '@services/customers.service';
-import { ProductsService } from '@services/products.service';
-import { PurchasesService } from '@services/purchases.service';
+import { DatabaseModule } from '../database/database.module';
+import { MessagingModule } from '../messaging/messaging.module';
+import { CustomersService } from '../services/customers.service';
+import { ProductsService } from '../services/products.service';
+import { PurchasesService } from '../services/purchases.service';
+import { CustomersResolver } from './graphql/resolvers/customers.resolver';
+import { ProductsResolver } from './graphql/resolvers/products.resolver';
+import { PurchasesResolver } from './graphql/resolvers/purchases.resolver';
 
 @Module({
   imports: [
@@ -30,15 +27,15 @@ import { PurchasesService } from '@services/purchases.service';
     }),
   ],
   providers: [
-    //Resolvers
+    // Resolvers
     ProductsResolver,
     PurchasesResolver,
     CustomersResolver,
 
-    //Services
-    CustomersService,
+    // Services
     ProductsService,
     PurchasesService,
+    CustomersService,
   ],
 })
 export class HttpModule {}

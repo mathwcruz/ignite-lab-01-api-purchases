@@ -7,15 +7,14 @@ import {
   ResolveField,
   Resolver,
 } from '@nestjs/graphql';
+import { CustomersService } from '../../../services/customers.service';
+import { ProductsService } from '../../../services/products.service';
 
-import { AuthUser, CurrentUser } from '@http/auth/current-user';
-import { AuthorizationGuard } from '@http/auth/authorization.guard';
-import { Purchase } from '@http/graphql/models/purchase';
-import { CreatePurchaseInput } from '@http/graphql/inputs/create-purchase-input';
-
-import { CustomersService } from '@services/customers.service';
-import { PurchasesService } from '@services/purchases.service';
-import { ProductsService } from '@services/products.service';
+import { PurchasesService } from '../../../services/purchases.service';
+import { AuthorizationGuard } from '../../auth/authorization.guard';
+import { AuthUser, CurrentUser } from '../../auth/current-user';
+import { CreatePurchaseInput } from '../inputs/create-purchase-input';
+import { Purchase } from '../models/purchase';
 
 @Resolver(() => Purchase)
 export class PurchasesResolver {
@@ -53,8 +52,8 @@ export class PurchasesResolver {
     }
 
     return this.purchasesService.createPurchase({
-      productId: data.productId,
       customerId: customer.id,
+      productId: data.productId,
     });
   }
 }

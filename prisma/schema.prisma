@@ -22,7 +22,7 @@ model Product {
   id String @id @default(uuid())
 
   title String
-  slug String @unique
+  slug  String @unique
 
   purchasedOn Purchase[]
 
@@ -41,10 +41,10 @@ model Purchase {
 
   status PurchaseStatus @default(PENDING)
 
-  customer Customer @relation(fields: [customerId], references: [id])
+  customer   Customer @relation(fields: [customerId], references: [id])
   customerId String
 
-  product Product @relation(fields: [productId], references: [id])
+  product   Product @relation(fields: [productId], references: [id])
   productId String
 
   createdAt DateTime @default(now())

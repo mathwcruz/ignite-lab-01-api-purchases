@@ -1,11 +1,11 @@
+import { Injectable } from '@nestjs/common';
 import slugify from 'slugify';
 
-import { PrismaService } from '@database/prisma/prisma.service';
-import { Injectable } from '@nestjs/common';
+import { PrismaService } from '../database/prisma/prisma.service';
 
-type CreateProductParams = {
+interface CreateProductParams {
   title: string;
-};
+}
 
 @Injectable()
 export class ProductsService {
@@ -24,7 +24,9 @@ export class ProductsService {
   }
 
   async createProduct({ title }: CreateProductParams) {
-    const slug = slugify(title, { trim: true, lower: true });
+    const slug = slugify(title, {
+      lower: true,
+    });
 
     const productWithSameSlug = await this.prisma.product.findUnique({
       where: {
@@ -32,8 +34,8 @@ export class ProductsService {
       },
     });
 
-    if (!!productWithSameSlug) {
-      throw new Error(`Product with slug ${slug} already exists`);
+    if (productWithSameSlug) {
+      throw new Error('Another product with same slug already exists.');
     }
 
     return this.prisma.product.create({

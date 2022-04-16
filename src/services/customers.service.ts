@@ -1,9 +1,10 @@
-import { PrismaService } from '@database/prisma/prisma.service';
 import { Injectable } from '@nestjs/common';
 
-type CreateCustomerParams = {
+import { PrismaService } from '../database/prisma/prisma.service';
+
+interface CreateCustomerParams {
   authUserId: string;
-};
+}
 
 @Injectable()
 export class CustomersService {
